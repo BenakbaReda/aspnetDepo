@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net;
+
 namespace aspnetapp
 {
     public class Program
@@ -16,19 +16,24 @@ namespace aspnetapp
             CreateHostBuilder(args).Build().Run();
         }
 
-        
-
-
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(serverOptions =>
-                    {
-                        serverOptions.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
-                    }).UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
+
+
+
+        //public static IHostBuilder CreateHostBuilder(string[] args) =>
+        //    Host.CreateDefaultBuilder(args)
+        //        .ConfigureWebHostDefaults(webBuilder =>
+        //        {
+        //            webBuilder.ConfigureKestrel(serverOptions =>
+        //            {
+        //                serverOptions.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
+        //            }).UseStartup<Startup>();
+        //        });
 
     }
 }
